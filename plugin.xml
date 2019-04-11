@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="cordova-plugin-admob-mediation-custom" version="1.0.0" 
+    xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-admob-mediation-custom</name>
+    <description>Cordova AdMob Mediation Plugin for different networks</description>
+    <author>sirg2003</author>
+    <keywords>admob,mediation,facebook,cordova,unity</keywords>
+    <license>MIT</license>
+    <engines>
+        <engine name="cordova" version=">=7.0.0" />
+        <engine name="cordova-android" version=">=6.3.0" />
+        <engine name="cordova-ios" version=">=4.4.0" />
+    </engines>
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/*">
+          <uses-permission android:name="android.permission.INTERNET" />
+          <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+          <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+          <!-- chartboost -->
+          <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+          <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+          <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+          <activity android:name="com.unity3d.ads.android.view.UnityAdsFullscreenActivity" 
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:hardwareAccelerated="true" />
+            
+          <activity android:name="com.facebook.ads.AudienceNetworkActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+            
+          <activity android:name="com.chartboost.sdk.CBImpressionActivity"
+            android:excludeFromRecents="true"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        </config-file>
+    
+        <framework src="com.unity3d.ads:unity-ads:+" />
+        <framework src="com.google.ads.mediation:unity:+" />
+        
+        <framework src="com.android.support:recyclerview-v7:+" />
+        <framework src="com.facebook.android:audience-network-sdk:5.+" />
+        <framework src="com.google.ads.mediation:facebook:5.+" />
+        
+        <framework src="com.google.ads.mediation:chartboost:+" />
+    </platform>
+    <platform name="ios">
+        <framework src="GoogleMobileAdsMediationUnity" type="podspec" spec="~> 3.0"/>
+        <framework src="GoogleMobileAdsMediationFacebook" type="podspec" spec="~> 5.1" />
+    </platform>
+</plugin>
